@@ -25,25 +25,25 @@ def build_parser() -> argparse.ArgumentParser:
     scan_parser.add_argument("--mermaid-out", help="Write Mermaid diagram to a file")
 
     draw_parser = subparsers.add_parser("draw", help="Draw the inferred architecture")
-    draw_parser.add_argument("source", help="Directory to scan or blueprint JSON to load")
+    draw_parser.add_argument("source", help="Directory to scan or saved blueprint/bundle JSON to load")
     draw_parser.add_argument("--format", choices=["mermaid", "markdown", "html", "svg"], default="mermaid")
     draw_parser.add_argument("--view", help="Optional view-state JSON to load")
     draw_parser.add_argument("--out", help="Write the rendered output to a file")
 
     export_parser = subparsers.add_parser("export", help="Export a rendered blueprint")
-    export_parser.add_argument("source", help="Directory to scan or blueprint JSON to load")
+    export_parser.add_argument("source", help="Directory to scan or saved blueprint/bundle JSON to load")
     export_parser.add_argument("--format", choices=["json", "view", "bundle", "markdown", "mermaid", "html", "svg"], default="json")
     export_parser.add_argument("--view", help="Optional view-state JSON to load")
     export_parser.add_argument("--out", help="Write the exported output to a file")
 
     preview_parser = subparsers.add_parser("preview", help="Serve a browser preview of the inferred architecture")
-    preview_parser.add_argument("source", help="Directory to scan or blueprint JSON to load")
+    preview_parser.add_argument("source", help="Directory to scan or saved blueprint/bundle JSON to load")
     preview_parser.add_argument("--view", help="Optional view-state JSON to load")
     preview_parser.add_argument("--host", default="127.0.0.1", help="Host to bind the preview server to")
     preview_parser.add_argument("--port", type=int, default=5123, help="Port to bind the preview server to")
 
     query_parser = subparsers.add_parser("query", help="Query the inferred model")
-    query_parser.add_argument("source", help="Directory to scan or blueprint JSON to load")
+    query_parser.add_argument("source", help="Directory to scan or saved blueprint/bundle JSON to load")
     query_parser.add_argument("query", help="Query expression such as components, relationships, type:service")
 
     return parser
