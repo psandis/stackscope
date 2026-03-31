@@ -1,0 +1,352 @@
+{
+  "name": "sample-app",
+  "root_path": "examples/sample-app",
+  "components": [
+    {
+      "id": "action_actions_checkout_v4",
+      "name": "actions/checkout@v4",
+      "type": "automation",
+      "technology": "github-action",
+      "source_path": ".github/workflows/ci.yml",
+      "tags": [
+        "ci-cd"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "action_actions_setup_node_v4",
+      "name": "actions/setup-node@v4",
+      "type": "automation",
+      "technology": "github-action",
+      "source_path": ".github/workflows/ci.yml",
+      "tags": [
+        "ci-cd"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "aws_db_instance_primary",
+      "name": "aws_db_instance.primary",
+      "type": "datastore",
+      "technology": "aws_db_instance",
+      "source_path": "infra/main.tf",
+      "tags": [
+        "terraform"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "aws_s3_bucket_artifacts",
+      "name": "aws_s3_bucket.artifacts",
+      "type": "storage",
+      "technology": "aws_s3_bucket",
+      "source_path": "infra/main.tf",
+      "tags": [
+        "terraform"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "cloud_aws",
+      "name": "AWS",
+      "type": "cloud",
+      "technology": "aws",
+      "source_path": "infra/main.tf",
+      "tags": [
+        "env",
+        "terraform"
+      ],
+      "metadata": {
+        "env_example": "eu-west-1"
+      }
+    },
+    {
+      "id": "github_actions_ci",
+      "name": "CI",
+      "type": "pipeline",
+      "technology": "github-actions",
+      "source_path": ".github/workflows/ci.yml",
+      "tags": [
+        "ci-cd"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "nginx_gateway",
+      "name": "nginx",
+      "type": "gateway",
+      "technology": "nginx",
+      "source_path": "nginx/nginx.conf",
+      "tags": [
+        "nginx"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "pkg_express",
+      "name": "express",
+      "type": "library",
+      "technology": "npm",
+      "source_path": "package.json",
+      "tags": [
+        "package-manifest"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "pkg_pg",
+      "name": "pg",
+      "type": "library",
+      "technology": "npm",
+      "source_path": "package.json",
+      "tags": [
+        "package-manifest"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "pkg_redis",
+      "name": "redis",
+      "type": "library",
+      "technology": "npm",
+      "source_path": "package.json",
+      "tags": [
+        "package-manifest"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "postgres",
+      "name": "postgres",
+      "type": "datastore",
+      "technology": "postgres",
+      "source_path": "docker-compose.yml",
+      "tags": [
+        "docker-compose",
+        "env"
+      ],
+      "metadata": {
+        "env_example": "postgres://postgres:postgres@postgres:5432/app"
+      }
+    },
+    {
+      "id": "redis",
+      "name": "redis",
+      "type": "datastore",
+      "technology": "redis",
+      "source_path": "docker-compose.yml",
+      "tags": [
+        "docker-compose",
+        "env"
+      ],
+      "metadata": {
+        "env_example": "redis://redis:6379"
+      }
+    },
+    {
+      "id": "sample_app",
+      "name": "sample-app",
+      "type": "application",
+      "technology": "node",
+      "source_path": "package.json",
+      "tags": [
+        "docker-compose",
+        "kubernetes",
+        "nginx",
+        "package-manifest"
+      ],
+      "metadata": {
+        "aliases": [
+          "app",
+          "app_upstream"
+        ],
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "sample_app_service",
+      "name": "sample-app-service",
+      "type": "integration",
+      "technology": "kubernetes-service",
+      "source_path": "k8s/deployment.yaml",
+      "tags": [
+        "kubernetes"
+      ],
+      "metadata": {
+        "selectors": {
+          "app": "sample-app"
+        }
+      }
+    },
+    {
+      "id": "stripe",
+      "name": "stripe",
+      "type": "integration",
+      "technology": "stripe",
+      "source_path": ".env.example",
+      "tags": [
+        "env"
+      ],
+      "metadata": {
+        "example": "demo-key"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "sample_app",
+      "target": "postgres",
+      "type": "depends_on",
+      "label": "depends_on",
+      "metadata": {
+        "source_path": "docker-compose.yml"
+      }
+    },
+    {
+      "source": "sample_app",
+      "target": "redis",
+      "type": "depends_on",
+      "label": "depends_on",
+      "metadata": {
+        "source_path": "docker-compose.yml"
+      }
+    },
+    {
+      "source": "sample_app",
+      "target": "pkg_express",
+      "type": "uses_library",
+      "label": "uses",
+      "metadata": {
+        "source_path": "package.json"
+      }
+    },
+    {
+      "source": "sample_app",
+      "target": "pkg_pg",
+      "type": "uses_library",
+      "label": "uses",
+      "metadata": {
+        "source_path": "package.json"
+      }
+    },
+    {
+      "source": "sample_app",
+      "target": "pkg_redis",
+      "type": "uses_library",
+      "label": "uses",
+      "metadata": {
+        "source_path": "package.json"
+      }
+    },
+    {
+      "source": "github_actions_ci",
+      "target": "action_actions_checkout_v4",
+      "type": "uses_action",
+      "label": "uses",
+      "metadata": {
+        "source_path": ".github/workflows/ci.yml"
+      }
+    },
+    {
+      "source": "github_actions_ci",
+      "target": "action_actions_setup_node_v4",
+      "type": "uses_action",
+      "label": "uses",
+      "metadata": {
+        "source_path": ".github/workflows/ci.yml"
+      }
+    },
+    {
+      "source": "github_actions_ci",
+      "target": "sample_app",
+      "type": "builds",
+      "label": "builds",
+      "metadata": {
+        "source_path": ".github/workflows/ci.yml"
+      }
+    },
+    {
+      "source": "aws_s3_bucket_artifacts",
+      "target": "cloud_aws",
+      "type": "hosted_on",
+      "label": "hosted_on",
+      "metadata": {
+        "source_path": "infra/main.tf"
+      }
+    },
+    {
+      "source": "aws_db_instance_primary",
+      "target": "cloud_aws",
+      "type": "hosted_on",
+      "label": "hosted_on",
+      "metadata": {
+        "source_path": "infra/main.tf"
+      }
+    },
+    {
+      "source": "nginx_gateway",
+      "target": "sample_app",
+      "type": "routes_to",
+      "label": "routes_to",
+      "metadata": {
+        "source_path": "nginx/nginx.conf"
+      }
+    },
+    {
+      "source": "nginx_gateway",
+      "target": "sample_app",
+      "type": "proxies_to",
+      "label": "proxies_to",
+      "metadata": {
+        "source_path": "nginx/nginx.conf"
+      }
+    },
+    {
+      "source": "sample_app_service",
+      "target": "sample_app",
+      "type": "exposes",
+      "label": "exposes",
+      "metadata": {
+        "source_path": "k8s/deployment.yaml"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "env_reference",
+      "source_path": ".env.example",
+      "details": {
+        "name": "database",
+        "value": "postgres://postgres:postgres@postgres:5432/app",
+        "component_id": "postgres"
+      }
+    },
+    {
+      "kind": "env_reference",
+      "source_path": ".env.example",
+      "details": {
+        "name": "redis",
+        "value": "redis://redis:6379",
+        "component_id": "redis"
+      }
+    },
+    {
+      "kind": "env_reference",
+      "source_path": ".env.example",
+      "details": {
+        "name": "stripe",
+        "value": "demo-key",
+        "component_id": "stripe"
+      }
+    },
+    {
+      "kind": "env_reference",
+      "source_path": ".env.example",
+      "details": {
+        "name": "aws",
+        "value": "eu-west-1",
+        "component_id": "cloud_aws"
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+[project]
+name = "Stackscope"
+
+[instructions]
+summary = "Keep Stackscope lightweight, scanner-first, and focused on architecture discovery rather than manual diagramming."

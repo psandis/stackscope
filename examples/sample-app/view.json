@@ -1,0 +1,100 @@
+{
+  "blueprint_name": "sample-app",
+  "root_path": "examples/sample-app",
+  "nodes": [
+    {
+      "id": "action_actions_checkout_v4",
+      "x": 164,
+      "y": 114,
+      "group": "Delivery"
+    },
+    {
+      "id": "action_actions_setup_node_v4",
+      "x": 164,
+      "y": 266,
+      "group": "Delivery"
+    },
+    {
+      "id": "aws_db_instance_primary",
+      "x": 708,
+      "y": 118,
+      "group": "Data"
+    },
+    {
+      "id": "aws_s3_bucket_artifacts",
+      "x": 708,
+      "y": 265,
+      "group": "Data"
+    },
+    {
+      "id": "cloud_aws",
+      "x": 982,
+      "y": 118,
+      "group": "Platform"
+    },
+    {
+      "id": "github_actions_ci",
+      "x": 164,
+      "y": 418,
+      "group": "Delivery"
+    },
+    {
+      "id": "nginx_gateway",
+      "x": 438,
+      "y": 116,
+      "group": "Application"
+    },
+    {
+      "id": "pkg_express",
+      "x": 1252,
+      "y": 114,
+      "group": "Edge"
+    },
+    {
+      "id": "pkg_pg",
+      "x": 1252,
+      "y": 266,
+      "group": "Edge"
+    },
+    {
+      "id": "pkg_redis",
+      "x": 1252,
+      "y": 418,
+      "group": "Edge"
+    },
+    {
+      "id": "postgres",
+      "x": 708,
+      "y": 422,
+      "group": "Data"
+    },
+    {
+      "id": "redis",
+      "x": 708,
+      "y": 574,
+      "group": "Data"
+    },
+    {
+      "id": "sample_app",
+      "x": 436,
+      "y": 266,
+      "group": "Application"
+    },
+    {
+      "id": "sample_app_service",
+      "x": 1252,
+      "y": 570,
+      "group": "Edge"
+    },
+    {
+      "id": "stripe",
+      "x": 1252,
+      "y": 722,
+      "group": "Edge"
+    }
+  ],
+  "hidden_components": [],
+  "metadata": {
+    "generated_by": "stackscope"
+  }
+}

@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5123:5123"
+  postgres:
+    image: postgres:15
+  redis:
+    image: redis:7
