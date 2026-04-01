@@ -119,9 +119,9 @@ Stackscope supports three saved formats:
 
 The sample project ships with all three:
 
-- [examples/sample-app/blueprint.json](/Users/petrisandholm/Projects/psandis-projects/stackscope/examples/sample-app/blueprint.json)
-- [examples/sample-app/view.json](/Users/petrisandholm/Projects/psandis-projects/stackscope/examples/sample-app/view.json)
-- [examples/sample-app/bundle.json](/Users/petrisandholm/Projects/psandis-projects/stackscope/examples/sample-app/bundle.json)
+- `examples/sample-app/blueprint.json`
+- `examples/sample-app/view.json`
+- `examples/sample-app/bundle.json`
 
 That means you can test the full round-trip workflow immediately without rescanning first.
 
