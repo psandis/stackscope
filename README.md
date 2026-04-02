@@ -4,6 +4,10 @@ Stackscope is a lightweight architecture discovery and blueprinting CLI for exis
 
 It is built for solution and enterprise architects who need to understand an unfamiliar setup quickly without starting in a manual diagramming tool.
 
+## Problem
+
+Architects and technical leads often inherit repos and environments with incomplete or stale documentation. The useful signals already exist in source repos and delivery configuration, but they are distributed across many files and formats.
+
 ## Mission
 
 Stackscope is built around one flow:
@@ -14,6 +18,13 @@ Stackscope is built around one flow:
 - export documentation and diagram artifacts from the same model
 
 It is not a manual diagramming canvas first. It is a scan-first discovery and blueprinting tool.
+
+## Non-Goals
+
+- manual diagram authoring
+- full CMDB replacement
+- runtime observability or RPA orchestration
+- perfect semantic parsing of every infrastructure format in V1
 
 ## Inputs, Model, Outputs
 
@@ -35,16 +46,45 @@ That means Stackscope does not draw directly from raw YAML or raw JSON. It scans
 - exports Mermaid, SVG, HTML, Markdown, blueprint JSON, view JSON, and bundle JSON
 - ships with a sample app and checked-in saved artifacts for round-trip testing
 
+## Stack
+
+- Python 3.10+, stdlib only, zero runtime dependencies
+- CLI via `argparse`
+- `unittest` for tests
+- Mermaid for diagram output
+- Inline SVG runtime for browser preview
+
 ## Repo Structure
 
 ```text
 .
-├── .codex/
 ├── docs/
+│   ├── blueprint-model.md
+│   ├── blueprint.schema.json
+│   ├── v1-scope.md
+│   └── vision.md
 ├── examples/
-├── src/
+│   └── sample-app/
+│       ├── blueprint.json
+│       ├── bundle.json
+│       ├── view.json
+│       ├── docker-compose.yml
+│       ├── package.json
+│       ├── infra/main.tf
+│       ├── k8s/deployment.yaml
+│       └── nginx/nginx.conf
+├── src/stackscope/
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── model.py
+│   ├── persistence.py
+│   ├── renderers.py
+│   ├── scanners.py
+│   ├── utils.py
+│   └── assets/icons/{aws,azure,gcp}/
 ├── tests/
-├── PRODUCT_SPEC.md
+│   └── test_stackscope.py
+├── LICENSE
 ├── README.md
 └── pyproject.toml
 ```
@@ -310,3 +350,7 @@ python3 -m unittest discover -s tests
 - YAML support for blueprint and view files
 - renderer modularization
 - plugin scanner system
+
+## License
+
+MIT — see [LICENSE](LICENSE).
