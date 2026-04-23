@@ -4,6 +4,10 @@ Stackscope is a lightweight architecture discovery and blueprinting CLI for exis
 
 It is built for solution and enterprise architects who need to understand an unfamiliar setup quickly without starting in a manual diagramming tool.
 
+<p align="center">
+  <img src="screenshot.png" alt="Stackscope preview" width="800">
+</p>
+
 ## Problem
 
 Architects and technical leads often inherit repos and environments with incomplete or stale documentation. The useful signals already exist in source repos and delivery configuration, but they are distributed across many files and formats.
